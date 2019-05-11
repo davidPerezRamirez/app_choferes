@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">app_choferes</string>
+
+    <string name="exit_title">Salir</string>
+    <string name="exit_message">¿Desea salir de la aplicación?</string>
+
+    <string name="dialog_button_yes">SI</string>
+    <string name="dialog_button_no">NO</string>
+</resources>

@@ -1,0 +1,166 @@
+<resources>
+
+    <dimen name="row_minimum_height_product">60dp</dimen>
+    <dimen name="row_minimum_height">60dp</dimen>
+    <dimen name="button_small_width">60dp</dimen>
+    <dimen name="button_height">60dp</dimen>
+
+    <!-- Toolbar Logo -->
+    <dimen name="logo_tango_toolbar_width">77dp</dimen>
+    <dimen name="logo_tango_toolbar_height">16dp</dimen>
+
+    <dimen name="logo_resto_toolbar_width">66dp</dimen>
+    <dimen name="logo_resto_toolbar_height">23dp</dimen>
+    <dimen name="padding_left_toolbar">4dp</dimen>
+
+    <!-- Kit -->
+    <dimen name="height_circle_button">60dp</dimen>
+    <dimen name="width_circle_button">60dp</dimen>
+    <dimen name="kit_header">68dp</dimen>
+
+    <!-- Table selection -->
+    <dimen name="grid_view_table_selection_height">100dp</dimen>
+    <dimen name="table_selection_item_size">50dp</dimen>
+    <dimen name="grid_view_item_left_right_padding">2dp</dimen>
+    <integer name="columns_table">3</integer>
+
+    <!-- Preferences item -->
+    <dimen name="preference_item_size">100dp</dimen>
+    <integer name="preference_item_columns">3</integer>
+    <integer name="preference_item_min_lines">3</integer>
+    <dimen name="item_edition_img_size">90dp</dimen>
+    <dimen name="item_edition_preview_img_size">52dp</dimen>
+    <dimen name="item_edition_preview_img_margin">16dp</dimen>
+    <dimen name="item_edition_preview_img_background_size">54dp</dimen>
+    <dimen name="item_edition_preview_img_background_margin">14dp</dimen>
+
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <!-- Fonts -->
+    <dimen name="extra_large_font_size">26sp</dimen>
+    <dimen name="large_font_size">22sp</dimen>
+    <dimen name="medium_font_size">18sp</dimen>
+    <dimen name="big_small_font_size">15sp</dimen>
+    <dimen name="small_font_size">13.5sp</dimen>
+    <dimen name="extra_small_font_size">12.5sp</dimen>
+
+    <dimen name="snackbar_font_size">5sp</dimen>
+
+    <dimen name="margin_button">0dp</dimen>
+    <dimen name="tab_max_width">0dp</dimen>
+
+    <bool name="isTablet">false</bool>
+
+    <!-- Order -->
+    <dimen name="order_total_height">45dp</dimen>
+
+    <!-- Order - Bottom Sheet -->
+    <dimen name="button_order_action_height">45dp</dimen>
+    <dimen name="peek_height_order_bottom_sheet">100dp</dimen>
+    <dimen name="text_size_order_bottom_sheet">14sp</dimen>
+    <dimen name="margin_top_settings">12dp</dimen>
+    <dimen name="padding_bottom_order_list_view">40dp</dimen>
+    <dimen name="comment_line_height">16dp</dimen>
+
+    <integer name="columns_order_action_item">3</integer>
+    <integer name="columns_load_product_item">1</integer>
+    <integer name="columns_categories">2</integer>
+    <integer name="columns_products">2</integer>
+
+    <!-- LoadProduct -->
+    <dimen name="product_item_height">60dp</dimen>
+    <dimen name="product_line_separator">.4dp</dimen>
+
+    <!--OrderItem-->
+    <dimen name="order_item_height">75dp</dimen>
+    <dimen name="order_item_side_size">8dp</dimen>
+    <dimen name="order_item_margin_top">5dp</dimen>
+    <integer name="order_item_price_weight">25</integer>
+    <integer name="order_item_description_weight">65</integer>
+    <integer name="order_item_preferences_weight">60</integer>
+    <integer name="order_item_details_weight">40</integer>
+    <dimen name="order_item_padding_actions">5dp</dimen>
+
+    <dimen name="separator_item_height">40dp</dimen>
+
+    <!-- MainActivity-->
+    <dimen name="progress_dialog_size">60dp</dimen>
+
+    <!-- Dialog Feedback mpp-->
+    <dimen name="min_height_dialog_feedback_mpp">250dp</dimen>
+
+    <!-- Dialog Payment MPP-->
+    <dimen name="padding_amount_to_charge">8dp</dimen>
+    <dimen name="padding_ckb_tip">10dp</dimen>
+    <dimen name="min_height_container">300dp</dimen>
+
+    <!-- Item Edition -->
+    <dimen name="item_edition_button_size">50dp</dimen>
+    <dimen name="text_size_preference_item">@dimen/small_font_size</dimen>
+
+    <!-- Main Order Fragment -  Screen Rotation -->
+    <fraction name="width_tab_layout_order_fragment">100%</fraction>
+    <fraction name="width_tab_layout_load_product_fragment">100%</fraction>
+    <bool name="display_tab_layout">true</bool>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Item Payment history  -->
+    <dimen name="payment_item_height">40dp</dimen>
+    <integer name="weight_payment_method_list">25</integer>
+    <integer name="weight_payment_history_list">40</integer>
+    <integer name="weight_charge_details">18</integer>
+    <dimen name="height_payment_method_icon">32dp</dimen>
+    <dimen name="width_payment_method_icon">34dp</dimen>
+
+    <!-- Invoice Activity -->
+    <dimen name="amount_to_charge_width">130dp</dimen>
+    <dimen name="detail_charge_width">200dp</dimen>
+    <dimen name="payment_history_bottom_sheet_height">150dp</dimen>
+    <dimen name="peek_height_payment_history_bottom_sheet">40dp</dimen>
+    <dimen name="charge_invoice_details_margin_top">10dp</dimen>
+    <dimen name="charge_invoice_details_margin_left">30dp</dimen>
+    <dimen name="charge_invoice_details_margin_right">30dp</dimen>
+    <dimen name="charge_invoice_details_margin_bottom">20dp</dimen>
+    <dimen name="diners_icon_height">24dp</dimen>
+    <dimen name="diners_icon_width">24dp</dimen>
+    <dimen name="btn_amount_dinners_dimen">28dp</dimen>
+    <fraction name="width_tab_layout_charge_detail">100%</fraction>
+    <fraction name="width_tab_layout_charge_made">100%</fraction>
+    <dimen name="title_invoice_size">@dimen/extra_small_font_size</dimen>
+
+    <!-- Generic Item -->
+    <dimen name="generic_item_height">64dp</dimen>
+
+    <!-- Logo Login-->
+    <dimen name="logo_login_tango_width">205dp</dimen>
+    <dimen name="logo_login_tango_height">55dp</dimen>
+    <dimen name="logo_login_width">243dp</dimen>
+    <dimen name="logo_login_height">100dp</dimen>
+    <dimen name="logo_login_margin">10dp</dimen>
+    <integer name="default_logo_container_weight">50</integer>
+    <integer name="default_password_container_weight">50</integer>
+    <integer name="logo_container_weight">40</integer>
+    <integer name="password_container_weight">60</integer>
+
+    <dimen name="login_fab_size">40dp</dimen>
+    <dimen name="dialogEtMargin">20dp</dimen>
+
+    <!-- Device Data Dialog Fragment -->
+    <integer name="device_data_title_weight">7</integer>
+    <integer name="device_data_list_weight">88</integer>
+    <integer name="device_data_buttons_weight">5</integer>
+
+    <!--    Order Item Position -->
+    <dimen name="width_position_item_list">50dp</dimen>
+    <dimen name="height_position_item_list">50dp</dimen>
+    <dimen name="height_title_position">30dp</dimen>
+    <dimen name="height_bottom_sheet_positions">45dp</dimen>
+    <dimen name="width_horizontal_scroll_positions">300dp</dimen>
+    <integer name="quantity_position_columns">2</integer>
+    <dimen name="dimen_btn_update_quantity_position">40dp</dimen>
+
+    <!-- ITEM EDITION CONTAINER -->
+    <fraction name="width_tab_layout_item_edition">100%</fraction>
+    <fraction name="width_tab_layout_positions">100%</fraction>
+
+</resources>
