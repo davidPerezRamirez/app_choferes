@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.app_choferes.R;
 import com.example.app_choferes.contracts.MainActivityContract;
 import com.example.app_choferes.listeners.OnBackPressedListener;
+import com.example.app_choferes.models.User;
 import com.example.app_choferes.presenter.MainPresenterImp;
 import com.example.app_choferes.ui.fragments.LoginFragment;
 import com.example.app_choferes.utils.DialogFactory;
@@ -118,6 +119,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                 super.onBackPressed();
             }
         }
+    }
+
+    public void showTemporalMessage(String msg) {
+        this.feedbackMessageDisplay.showTemporalMessage(msg);
     }
 
     @Override
