@@ -9,13 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.app_choferes.R;
-import com.example.app_choferes.models.Driver;
+import com.example.app_choferes.models.User;
 
 import java.util.List;
 
-public class DriverListAdapter extends ArrayAdapter<Driver> {
+public class UserListAdapter extends ArrayAdapter<User> {
 
-    public DriverListAdapter(Activity context, int resouceId, List<Driver> list) {
+    public UserListAdapter(Activity context, int resouceId, List<User> list) {
         super(context, resouceId, list);
     }
 
@@ -32,7 +32,7 @@ public class DriverListAdapter extends ArrayAdapter<Driver> {
 
     private View rowview(View convertView, int position) {
 
-        Driver driver = getItem(position);
+        User driver = getItem(position);
 
         viewHolder holder;
         View rowview = convertView;
