@@ -50,11 +50,13 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
 
     @Override
     public void getUsers() {
+        getLoginFragment().showProgressBar();
         Call<List<User>> users = appService.userList();
         users.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 getLoginFragment().loadUsers(response.body());
+                getLoginFragment().hideProgressBar();
             }
 
             @Override
