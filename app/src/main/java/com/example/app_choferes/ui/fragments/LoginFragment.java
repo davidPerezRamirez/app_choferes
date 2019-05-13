@@ -2,6 +2,7 @@ package com.example.app_choferes.ui.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter> implements OnBackPressedListener, LoginFragmentContract.View {
 
@@ -25,6 +27,11 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
     CoordinatorLayout clContainer;
     @BindView(R.id.spDriverList)
     Spinner spDriverList;
+    @OnClick(R.id.btn_accept)
+    public void onClickBtnAccept() {
+        ExpensesFragment fragment = new ExpensesFragment();
+        switchFragment(fragment, true);
+    }
 
     public static LoginFragment newInstance() {
         return new LoginFragment();
@@ -50,7 +57,6 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
     private void initializeSpinnerDriver() {
         getPresenter().getUsers();
     }
-
 
     @Override
     public void loadUsers(List<User> users) {
