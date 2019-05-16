@@ -21,7 +21,7 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
     public LoginFragmentPresenterImp(LoginFragmentContract.View loginFragment) {
         this.loginView = new WeakReference<>(loginFragment);
         this.retrofitService = new RetrofitService();
-        appService = retrofitService.connectToHerokuApp();
+        this.appService = retrofitService.connectToHerokuApp();
     }
 
     private LoginFragmentContract.View getLoginFragment() {
@@ -39,8 +39,22 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
     }
 
     @Override
-    public boolean validateUserLogin() {
-        return false;
+    public void validateUserLogin(String password) {
+        /*getLoginFragment().showProgressBar();
+        Call<Boolean> users = appService.validUser();
+        users.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                getLoginFragment().navigateToListExpenseFragment();
+                getLoginFragment().hideProgressBar();
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                getLoginFragment().showFailMsg("No pudieron cargarse los usuarios");
+            }
+        });*/
+        getLoginFragment().navigateToListExpenseFragment();
     }
 
     @Override
@@ -50,6 +64,7 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
 
     @Override
     public void getUsers() {
+        /*TODO: El usuario que llega por parametro debe venir con el viaje actual que esta realizando*/
         getLoginFragment().showProgressBar();
         Call<List<User>> users = appService.userList();
         users.enqueue(new Callback<List<User>>() {
