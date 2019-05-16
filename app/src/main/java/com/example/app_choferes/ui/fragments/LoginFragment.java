@@ -2,10 +2,10 @@ package com.example.app_choferes.ui.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.app_choferes.R;
@@ -27,10 +27,14 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
     CoordinatorLayout clContainer;
     @BindView(R.id.spDriverList)
     Spinner spDriverList;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
+
     @OnClick(R.id.btn_accept)
     public void onClickBtnAccept() {
-        ExpensesFragment fragment = new ExpensesFragment();
-        switchFragment(fragment, true);
+        String pass = etPassword.getText().toString();
+
+        getPresenter().validateUserLogin(pass);
     }
 
     public static LoginFragment newInstance() {
@@ -72,5 +76,16 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
     public boolean doBack() {
         showExitDialog();
         return false;
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return (User)spDriverList.getSelectedItem();
+    }
+
+    @Override
+    public void navigateToListExpenseFragment() {
+        ListExpensesFragment fragment = ListExpensesFragment.newInstance(getCurrentUser());
+        switchFragment(fragment, true);
     }
 }
