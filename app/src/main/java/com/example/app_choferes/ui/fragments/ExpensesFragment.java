@@ -37,15 +37,17 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     EditText etAmount;
     @BindView(R.id.etDescription)
     EditText etDescrption;
+
     @OnClick(R.id.btn_accept)
     public void onClickBtnAccept() {
         String description = etDescrption.getText().toString();
         /*TODO: El spinner tiene que devolver un TypeExpense*/
-        String typeExpense = (String)spTypeExpenseList.getSelectedItem();
+        String typeExpense = (String) spTypeExpenseList.getSelectedItem();
         Double amount = Double.parseDouble(etAmount.getText().toString());
 
         getPresenter().saveExpense(description, typeExpense, amount, capturedImage);
     }
+
     @OnClick(R.id.image)
     public void onClickImage() {
         image.setScaleX(10.0f);
@@ -93,7 +95,7 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
 
     @Override
     public boolean doBack() {
-        showExitDialog();
+        this.switchFragmentBack();
         return false;
     }
 
