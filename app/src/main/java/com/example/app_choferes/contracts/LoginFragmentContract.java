@@ -16,6 +16,10 @@ public interface LoginFragmentContract {
         void showFailMsg(String msg);
 
         void switchFragment(Fragment fragment, Boolean addToBackStack);
+
+        User getCurrentUser();
+
+        void navigateToListExpenseFragment();
     }
 
     interface Presenter extends BasePresenter {
@@ -24,7 +28,7 @@ public interface LoginFragmentContract {
 
         void doLogout();
 
-        boolean validateUserLogin();
+        void validateUserLogin(String password);
 
         void getUsers();
     }
