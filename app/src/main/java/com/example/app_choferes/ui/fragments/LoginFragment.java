@@ -64,9 +64,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
 
     @Override
     public void loadUsers(List<User> users) {
-        spDriverList.setAdapter(new UserListAdapter(this.getMainActivity(), R.layout.driver_item_list, users));
-    }
-
+        spDriverList.setAdapter(new UserListAdapter(this.getMainActivity(), R.layout.spinner_item_list, users));
     }
 
     @Override
@@ -77,7 +75,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
 
     @Override
     public User getCurrentUser() {
-        return (User)spDriverList.getSelectedItem();
+        return (User) spDriverList.getSelectedItem();
     }
 
     @Override
