@@ -1,12 +1,14 @@
 package com.example.app_choferes.presenter;
 
 import com.example.app_choferes.contracts.LoginFragmentContract;
+import com.example.app_choferes.models.QueryResponse;
 import com.example.app_choferes.models.User;
 import com.example.app_choferes.service.QueriesRestAPIService;
 import com.example.app_choferes.service.RetrofitService;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,21 +42,28 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
 
     @Override
     public void validateUserLogin(String password) {
-        /*getLoginFragment().showProgressBar();
-        Call<Boolean> users = appService.validUser();
-        users.enqueue(new Callback<Boolean>() {
+        getLoginFragment().showProgressBar();
+        User selectedUser = getLoginFragment().getCurrentUser();
+        Call<Map<String, String>> users = appService.validateUser(selectedUser.getId(), password);
+        users.enqueue(new Callback<Map<String, String>>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                getLoginFragment().navigateToListExpenseFragment();
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                QueryResponse queryResponse = new QueryResponse(response.body());
+
                 getLoginFragment().hideProgressBar();
+                if (queryResponse.isSuccess()) {
+                    getLoginFragment().navigateToListExpenseFragment();
+                } else {
+                    getLoginFragment().showFailMsg("No fue posible verificar la identidad del usuario. Intentelo nuevamente");
+                }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                getLoginFragment().showFailMsg("No pudieron cargarse los usuarios");
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                getLoginFragment().hideProgressBar();
+                getLoginFragment().showFailMsg("Ocurrió un error validar el usuario. Intentelo nuevamente");
             }
-        });*/
-        getLoginFragment().navigateToListExpenseFragment();
+        });
     }
 
     @Override
