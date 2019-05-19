@@ -13,7 +13,7 @@ public interface LoginFragmentContract {
 
         void loadUsers(List<User> users);
 
-        void showFailMsg(String msg);
+        void showTemporalMsg(String msg);
 
         void switchFragment(Fragment fragment, Boolean addToBackStack);
 
