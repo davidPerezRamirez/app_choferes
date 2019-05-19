@@ -13,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.app_choferes.R;
+import com.example.app_choferes.adapters.ExpenseTypeListAdapter;
 import com.example.app_choferes.contracts.ExpensesFragmentContract;
 import com.example.app_choferes.listeners.OnBackPressedListener;
+import com.example.app_choferes.models.ExpenseType;
 import com.example.app_choferes.presenter.ExpensesFragmentPresenterImp;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,11 +45,10 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     @OnClick(R.id.btn_accept)
     public void onClickBtnAccept() {
         String description = etDescrption.getText().toString();
-        /*TODO: El spinner tiene que devolver un TypeExpense*/
-        String typeExpense = (String) spTypeExpenseList.getSelectedItem();
+        int idTypeExpense = ((ExpenseType) spTypeExpenseList.getSelectedItem()).getId();
         Double amount = Double.parseDouble(etAmount.getText().toString());
 
-        getPresenter().saveExpense(description, typeExpense, amount, capturedImage);
+        getPresenter().saveExpense(description, idTypeExpense, amount, capturedImage);
     }
 
     @OnClick(R.id.image)
@@ -63,7 +66,9 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         clContainer = (CoordinatorLayout) inflater.inflate(R.layout.expenses_fragment, container, false);
         unbinder = ButterKnife.bind(this, clContainer);
+
         faActivity.setOnBackPressedListener(this);
+        this.initializeSpinnerExpenseTypes();
 
         return clContainer;
     }
@@ -103,4 +108,14 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     protected ExpensesFragmentContract.Presenter createPresenter() {
         return new ExpensesFragmentPresenterImp(this);
     }
+
+    private void initializeSpinnerExpenseTypes() {
+        getPresenter().loadExpenseTypes();
+    }
+
+    @Override
+    public void loadExpenseTypes(List<ExpenseType> expenseTypes) {
+        spTypeExpenseList.setAdapter(new ExpenseTypeListAdapter(this.getMainActivity(), R.layout.spinner_item_list, expenseTypes));
+    }
+
 }
