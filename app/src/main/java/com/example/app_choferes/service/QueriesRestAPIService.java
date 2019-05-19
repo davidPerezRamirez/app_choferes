@@ -23,8 +23,8 @@ public interface QueriesRestAPIService {
     Call<List<ExpenseType>> getExpenseTypes();
 
     @FormUrlEncoded
-    @GET(ConstantRestApi.LIST_EXPENSES_CURRENT_USER)
-    Call<List<Expense>> listExpensesFromCurrentUser(@Field("idUser") int idUser);
+    @POST(ConstantRestApi.GET_EXPENSES_USER)
+    Call<List<Expense>> getExpensesUser(@Field("idUser") int idUser);
 
     @FormUrlEncoded
     @POST(ConstantRestApi.VALIDATE_USER)
