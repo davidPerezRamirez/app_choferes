@@ -79,11 +79,6 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
     }
 
     @Override
-    public void showFailMsg(String msg) {
-        getMainActivity().showTemporalMessage(msg);
-    }
-
-    @Override
     public User getCurrentUser() {
         return this.currentUser;
     }

@@ -54,14 +54,14 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
                 if (queryResponse.isSuccess()) {
                     getLoginFragment().navigateToListExpenseFragment();
                 } else {
-                    getLoginFragment().showFailMsg("No fue posible verificar la identidad del usuario. Intentelo nuevamente");
+                    getLoginFragment().showTemporalMsg("No fue posible verificar la identidad del usuario. Intentelo nuevamente");
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, String>> call, Throwable t) {
                 getLoginFragment().hideProgressBar();
-                getLoginFragment().showFailMsg("Ocurrió un error validar el usuario. Intentelo nuevamente");
+                getLoginFragment().showTemporalMsg("Ocurrió un error validar el usuario. Intentelo nuevamente");
             }
         });
     }
@@ -85,7 +85,7 @@ public class LoginFragmentPresenterImp implements LoginFragmentContract.Presente
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                getLoginFragment().showFailMsg("No pudieron cargarse los usuarios");
+                getLoginFragment().showTemporalMsg("No pudieron cargarse los usuarios");
             }
         });
     }

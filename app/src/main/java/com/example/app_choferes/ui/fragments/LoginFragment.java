@@ -67,9 +67,6 @@ public class LoginFragment extends BaseFragment<LoginFragmentContract.Presenter>
         spDriverList.setAdapter(new UserListAdapter(this.getMainActivity(), R.layout.driver_item_list, users));
     }
 
-    @Override
-    public void showFailMsg(String msg) {
-        getMainActivity().showTemporalMessage(msg);
     }
 
     @Override

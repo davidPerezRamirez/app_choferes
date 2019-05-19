@@ -172,4 +172,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
     }
 
+    @Override
+    public void showTemporalMsg(String msg) {
+        getMainActivity().showTemporalMessage(msg);
+    }
+
 }
