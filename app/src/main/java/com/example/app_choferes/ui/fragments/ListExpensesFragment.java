@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,10 +72,10 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
 
     @Override
     public void initializeRecyclerListExpense(List<Expense> expenses) {
-        LinearLayoutManager llm = new LinearLayoutManager(this.getMainActivity());
+        GridLayoutManager glm = new GridLayoutManager(this.getMainActivity(), 2);
         ListExpenseAdapter listExpenseAdapter = new ListExpenseAdapter(expenses);
 
-        rvListExpenses.setLayoutManager(llm);
+        rvListExpenses.setLayoutManager(glm);
         rvListExpenses.setAdapter(listExpenseAdapter);
     }
 
