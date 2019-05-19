@@ -40,14 +40,14 @@ public class UserListAdapter extends ArrayAdapter<User> {
 
             holder = new viewHolder();
             LayoutInflater flater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowview = flater.inflate(R.layout.driver_item_list, null, false);
+            rowview = flater.inflate(R.layout.spinner_item_list, null, false);
 
-            holder.txtTitle = (TextView) rowview.findViewById(R.id.tvDriverName);
+            holder.txtTitle = rowview.findViewById(R.id.tvDescriptionItem);
             rowview.setTag(holder);
         } else {
             holder = (viewHolder) rowview.getTag();
         }
-        holder.txtTitle.setText(driver.getName());
+        holder.txtTitle.setText(driver.getName() + " " + driver.getLastname());
 
         return rowview;
     }
