@@ -2,6 +2,7 @@ package com.example.app_choferes.service;
 
 import com.example.app_choferes.constants.ConstantRestApi;
 import com.example.app_choferes.models.Expense;
+import com.example.app_choferes.models.ExpenseType;
 import com.example.app_choferes.models.User;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public interface QueriesRestAPIService {
 
     @GET(ConstantRestApi.GET_USERS)
     Call<List<User>> userList();
+
+    @GET(ConstantRestApi.GET_EXPENSE_TYPES)
+    Call<List<ExpenseType>> getExpenseTypes();
 
     @FormUrlEncoded
     @GET(ConstantRestApi.LIST_EXPENSES_CURRENT_USER)
