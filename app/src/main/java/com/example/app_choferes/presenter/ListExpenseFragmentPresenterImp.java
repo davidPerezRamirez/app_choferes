@@ -7,7 +7,6 @@ import com.example.app_choferes.service.QueriesRestAPIService;
 import com.example.app_choferes.service.RetrofitService;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,10 +36,9 @@ public class ListExpenseFragmentPresenterImp implements ListExpenseFragmentContr
 
     @Override
     public void loadListExpensesFormCurrentUser() {
-        /*TODO: Implementar metodo en backend para obtener todos gastos cargados por usuario para el viaje actual*/
-        /*getListExpenseView().showProgressBar();
+        getListExpenseView().showProgressBar();
         final User currentUser = getListExpenseView().getCurrentUser();
-        Call<List<Expense>> users = appService.listExpensesFromCurrentUser(currentUser.getId());
+        Call<List<Expense>> users = appService.getExpensesUser(currentUser.getId());
 
         users.enqueue(new Callback<List<Expense>>() {
             @Override
@@ -51,16 +49,9 @@ public class ListExpenseFragmentPresenterImp implements ListExpenseFragmentContr
 
             @Override
             public void onFailure(Call<List<Expense>> call, Throwable t) {
-                getListExpenseView().showFailMsg("No pudieron cargarse los gastos de usuario " + currentUser.getName());
+                getListExpenseView().hideProgressBar();
+                getListExpenseView().showTemporalMsg("No pudieron cargarse los gastos de usuario " + currentUser.getName());
             }
-        });*/
-
-        List<Expense> expenses = new ArrayList<>();
-
-        expenses.add(new Expense("Comida", 450.0, "https://isuzu.com.ar/wp-content/uploads/2018/03/Serie-EV.jpg"));
-        expenses.add(new Expense("Peaje", 130.0, "https://isuzu.com.ar/wp-content/uploads/2018/03/Serie-EV.jpg"));
-        expenses.add(new Expense("Aduana", 2450.0, "https://isuzu.com.ar/wp-content/uploads/2018/03/Serie-EV.jpg"));
-
-        getListExpenseView().initializeRecyclerListExpense(expenses);
+        });
     }
 }

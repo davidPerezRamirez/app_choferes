@@ -38,10 +38,11 @@ public class ListExpenseAdapter extends RecyclerView.Adapter<ListExpenseAdapter.
         Expense expense = expenses.get(position);
 
         holder.tvAmount.setText(expense.getAmount().toString());
+        holder.tvExpenseDescription.setText(expense.getExpenseDescription());
         holder.tvTypeExpense.setText(expense.getTypeExpenseDescription());
         Picasso.with(holder.expensePhoto.getContext())
                 .load(expense.getPhotoUrl())
-                .resize(100, 100)
+                .resize(80, 80)
                 .into(holder.expensePhoto);
     }
 
@@ -54,6 +55,8 @@ public class ListExpenseAdapter extends RecyclerView.Adapter<ListExpenseAdapter.
 
         @BindView(R.id.tvAmount)
         TextView tvAmount;
+        @BindView(R.id.tvExpenseDescription)
+        TextView tvExpenseDescription;
         @BindView(R.id.tvTypeExpense)
         TextView tvTypeExpense;
         @BindView(R.id.expense_photo)
