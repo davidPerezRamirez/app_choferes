@@ -12,8 +12,6 @@ public interface ListExpenseFragmentContract {
 
         void initializeRecyclerListExpense(List<Expense> expenses);
 
-        void showFailMsg(String msg);
-
         User getCurrentUser();
     }
 

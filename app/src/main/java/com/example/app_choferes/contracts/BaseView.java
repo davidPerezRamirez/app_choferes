@@ -37,4 +37,6 @@ public interface BaseView {
 
     void hideProgressBar();
 
+    void showTemporalMsg(String msg);
+
 }
