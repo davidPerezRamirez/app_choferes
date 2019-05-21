@@ -2,7 +2,6 @@ package com.example.app_choferes.ui.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
@@ -51,12 +50,6 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
         getPresenter().saveExpense(description, idTypeExpense, amount, capturedImage);
     }
 
-    @OnClick(R.id.image)
-    public void onClickImage() {
-        image.setScaleX(10.0f);
-        image.setScaleY(10.0f);
-    }
-
     @OnClick(R.id.btn_camera)
     public void onClickBtnCamera() {
         this.getPresenter().openCamera();
@@ -79,23 +72,11 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
         if (requestCode == TAKE_PHOTO) {
             if (data != null) {
                 if (data.hasExtra("data")) {
-                    Bitmap capturedImage = data.getParcelableExtra("data");
-                    capturedImage = rotateImage(capturedImage, 90);
+                    capturedImage = data.getParcelableExtra("data");
                     image.setImageBitmap(capturedImage);
                 }
             }
         }
-    }
-
-    private static Bitmap rotateImage(Bitmap img, int degree) {
-        Matrix matrix = new Matrix();
-
-        matrix.postRotate(degree);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(img, 400, 400, true);
-        Bitmap rotatedImg = Bitmap.createBitmap(resizedImage, 0, 0, resizedImage.getWidth(), resizedImage.getHeight(), matrix, true);
-        img.recycle();
-
-        return rotatedImg;
     }
 
     @Override
