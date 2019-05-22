@@ -5,15 +5,17 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("codUsuario")
-    int id;
+    private int id;
     @SerializedName("codTipoUsuario")
-    int idUserType;
+    private int idUserType;
     @SerializedName("nombre")
-    String name;
+    private String name;
     @SerializedName("apellido")
-    String lastname;
+    private String lastname;
     @SerializedName("importeViaje")
-    double importTravel;
+    private double importTravel;
+    @SerializedName("idViaje")
+    private int idTravel;
 
     public User() {}
 
@@ -39,5 +41,9 @@ public class User {
 
     public double getImportTravel() {
         return importTravel;
+    }
+
+    public int getIdTravel() {
+        return idTravel;
     }
 }
