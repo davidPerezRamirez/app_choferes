@@ -6,6 +6,8 @@ import android.provider.MediaStore;
 
 import com.example.app_choferes.contracts.ExpensesFragmentContract;
 import com.example.app_choferes.models.ExpenseType;
+import com.example.app_choferes.models.QueryResponse;
+import com.example.app_choferes.models.User;
 import com.example.app_choferes.service.QueriesRestAPIService;
 import com.example.app_choferes.service.RetrofitService;
 
@@ -17,6 +19,7 @@ import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -51,28 +54,28 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
     }
 
     @Override
-    public void saveExpense(String description, int idTypeExpense, Double amount, Bitmap capturedImage) {
+    public void saveNewExpense(final String description, final int idTypeExpense, final Double amount, Bitmap capturedImage) {
         File fileImage = this.createFileToImage(capturedImage);
 
         if (fileImage != null) {
             RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), fileImage);
             MultipartBody.Part part = MultipartBody.Part.createFormData("image", fileImage.getName(), fileReqBody);
             RequestBody responseBody = RequestBody.create(MultipartBody.FORM, "image-type");
-            Call<ResponseBody> req = appService.saveImage(part, responseBody);
+            Call<Map<String, String>> req = appService.saveImage(part, responseBody);
 
             getExpensesView().showProgressBar();
-            req.enqueue(new Callback<ResponseBody>() {
+            req.enqueue(new Callback<Map<String, String>>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                     getExpensesView().hideProgressBar();
-                    ResponseBody body = response.body();
-                    //this.saveExpense({.....});
-                    getExpensesView().switchFragmentBack();
-                    getExpensesView().showTemporalMsg("Nuevo gasto guardado exitosamente");
+                    QueryResponse queryResponse = new QueryResponse(response.body());
+                    String nameImage = queryResponse.getValue("name");
+
+                    saveExpense(description, idTypeExpense, amount, nameImage);
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<Map<String, String>> call, Throwable t) {
                     getExpensesView().hideProgressBar();
                     getExpensesView().showTemporalMsg(t.getMessage());
                 }
@@ -81,6 +84,33 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
             getExpensesView().showTemporalMsg("Surgio un error al guardar la imagen. Intentelo nuevamente");
         }
 
+    }
+
+    private void saveExpense(String description, int idTypeExpense, Double amount, String nameImage) {
+        getExpensesView().showProgressBar();
+        User currentUser = getExpensesView().getCurrentUser();
+        Call<Map<String, String>> users = appService.saveExpense(nameImage, idTypeExpense, description,
+                amount.toString(), currentUser.getIdTravel());
+        users.enqueue(new Callback<Map<String, String>>() {
+            @Override
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                getExpensesView().hideProgressBar();
+                QueryResponse queryResponse = new QueryResponse(response.body());
+
+                if (queryResponse.isSuccess()) {
+                    getExpensesView().showTemporalMsg("Nuevo gasto guardado exitosamente");
+                    getExpensesView().switchFragmentBack();
+                } else {
+                    getExpensesView().showTemporalMsg("Ocurrió un error al obtener los tipos de gastos.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                getExpensesView().hideProgressBar();
+                getExpensesView().showTemporalMsg("Ocurrió un error al obtener los tipos de gastos.");
+            }
+        });
     }
 
     public File createFileToImage(Bitmap capturedImage) {
