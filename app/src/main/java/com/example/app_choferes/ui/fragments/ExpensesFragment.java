@@ -16,6 +16,7 @@ import com.example.app_choferes.adapters.ExpenseTypeListAdapter;
 import com.example.app_choferes.contracts.ExpensesFragmentContract;
 import com.example.app_choferes.listeners.OnBackPressedListener;
 import com.example.app_choferes.models.ExpenseType;
+import com.example.app_choferes.models.User;
 import com.example.app_choferes.presenter.ExpensesFragmentPresenterImp;
 
 import java.util.List;
@@ -29,6 +30,7 @@ import static com.example.app_choferes.constants.AppConstants.TAKE_PHOTO;
 public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Presenter> implements OnBackPressedListener, ExpensesFragmentContract.View {
 
     private Bitmap capturedImage;
+    private User currentUser;
 
     @BindView(R.id.clContainer)
     CoordinatorLayout clContainer;
@@ -47,12 +49,24 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
         int idTypeExpense = ((ExpenseType) spTypeExpenseList.getSelectedItem()).getId();
         Double amount = Double.parseDouble(etAmount.getText().toString());
 
-        getPresenter().saveExpense(description, idTypeExpense, amount, capturedImage);
+        getPresenter().saveNewExpense(description, idTypeExpense, amount, capturedImage);
     }
 
     @OnClick(R.id.btn_camera)
     public void onClickBtnCamera() {
         this.getPresenter().openCamera();
+    }
+
+    public static ExpensesFragment newInstance(User currentUser) {
+        ExpensesFragment fragment = new ExpensesFragment();
+
+        fragment.setCurrentUser(currentUser);
+
+        return fragment;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     @Override
@@ -99,4 +113,8 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
         spTypeExpenseList.setAdapter(new ExpenseTypeListAdapter(this.getMainActivity(), R.layout.spinner_item_list, expenseTypes));
     }
 
+    @Override
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }

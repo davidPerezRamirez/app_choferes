@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 
 import com.example.app_choferes.models.ExpenseType;
+import com.example.app_choferes.models.User;
 import com.example.app_choferes.presenter.BasePresenter;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface ExpensesFragmentContract {
         void loadExpenseTypes(List<ExpenseType> expenseTypes);
 
         void showTemporalMsg(String msg);
+
+        User getCurrentUser();
     }
 
     interface Presenter extends BasePresenter {

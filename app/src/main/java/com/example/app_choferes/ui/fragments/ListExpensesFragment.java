@@ -37,7 +37,7 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
     RecyclerView rvListExpenses;
     @OnClick(R.id.btn_add)
     public void onClickBtnAdd() {
-        ExpensesFragment fragment = new ExpensesFragment();
+        ExpensesFragment fragment = ExpensesFragment.newInstance(this.currentUser);
         switchFragment(fragment, true);
     }
 
