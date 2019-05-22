@@ -13,4 +13,8 @@ public class QueryResponse {
     public boolean isSuccess() {
         return Integer.parseInt(this.result.get("result")) == 1;
     }
+
+    public String getValue(String key) {
+        return result.get(key);
+    }
 }
