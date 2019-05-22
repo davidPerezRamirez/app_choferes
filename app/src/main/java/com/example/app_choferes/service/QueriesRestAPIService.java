@@ -3,6 +3,7 @@ package com.example.app_choferes.service;
 import com.example.app_choferes.constants.ConstantRestApi;
 import com.example.app_choferes.models.Expense;
 import com.example.app_choferes.models.ExpenseType;
+import com.example.app_choferes.models.QueryResponse;
 import com.example.app_choferes.models.User;
 
 import java.util.List;
@@ -35,8 +36,16 @@ public interface QueriesRestAPIService {
     @POST(ConstantRestApi.VALIDATE_USER)
     Call<Map<String, String>> validateUser(@Field("idUser") int idUser, @Field("password") String pass);
 
+    @FormUrlEncoded
+    @POST(ConstantRestApi.SAVE_EXPENSE)
+    Call<Map<String, String>> saveExpense(@Field("nameImage") String nameImage,
+                                          @Field("idTypeExpense") int idTypeExpense,
+                                          @Field("description") String description,
+                                          @Field("money") String money,
+                                          @Field("idTravel") int idTravel);
+
     @Multipart
     @POST(ConstantRestApi.SAVE_IMAGE)
-    Call<ResponseBody> saveImage(@Part MultipartBody.Part file, @Part("image") RequestBody requestBody);
+    Call<Map<String, String>> saveImage(@Part MultipartBody.Part file, @Part("image") RequestBody requestBody);
 
 }

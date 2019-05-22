@@ -13,4 +13,6 @@ public class ConstantRestApi {
     public static final String VALIDATE_USER = "validateUser/";
 
     public static final String SAVE_IMAGE = "saveImage/";
+
+    public static final String  SAVE_EXPENSE = "saveExpense/";
 }
