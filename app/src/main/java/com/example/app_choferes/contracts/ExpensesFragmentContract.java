@@ -26,6 +26,8 @@ public interface ExpensesFragmentContract {
 
         void openCamera();
 
+        void openGallery();
+
         void saveNewExpense(String description, int idTypeExpense, Double amount, Bitmap capturedImage);
 
         void loadExpenseTypes();

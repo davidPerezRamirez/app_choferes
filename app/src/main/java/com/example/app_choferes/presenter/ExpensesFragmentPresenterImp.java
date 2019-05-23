@@ -24,11 +24,11 @@ import java.util.Map;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.app_choferes.constants.AppConstants.SELECT_PHOTO;
 import static com.example.app_choferes.constants.AppConstants.TAKE_PHOTO;
 
 public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Presenter {
@@ -51,6 +51,12 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
     public void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         getExpensesView().startActivityForResult(intent, TAKE_PHOTO);
+    }
+
+    @Override
+    public void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        getExpensesView().startActivityForResult(gallery, SELECT_PHOTO);
     }
 
     @Override

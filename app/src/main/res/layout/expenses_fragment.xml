@@ -93,13 +93,28 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <Button
-                android:id="@+id/btn_camera"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Capturar Imagen"
-                android:drawableRight="@android:drawable/ic_menu_camera" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@android:drawable/ic_menu_camera"
+                    android:text="Capturar Imagen" />
+
+                <Button
+                    android:id="@+id/btn_open_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@android:drawable/ic_menu_camera"
+                    android:text="seleccionar Imagen" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/image"

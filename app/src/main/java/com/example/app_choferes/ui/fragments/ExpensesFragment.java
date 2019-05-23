@@ -2,7 +2,9 @@ package com.example.app_choferes.ui.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +21,14 @@ import com.example.app_choferes.models.ExpenseType;
 import com.example.app_choferes.models.User;
 import com.example.app_choferes.presenter.ExpensesFragmentPresenterImp;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.app_choferes.constants.AppConstants.SELECT_PHOTO;
 import static com.example.app_choferes.constants.AppConstants.TAKE_PHOTO;
 
 public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Presenter> implements OnBackPressedListener, ExpensesFragmentContract.View {
@@ -55,6 +59,11 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     @OnClick(R.id.btn_camera)
     public void onClickBtnCamera() {
         this.getPresenter().openCamera();
+    }
+
+    @OnClick(R.id.btn_open_gallery)
+    public void onClickBtnOpenGallery() {
+        this.getPresenter().openGallery();
     }
 
     public static ExpensesFragment newInstance(User currentUser) {
@@ -90,6 +99,14 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
                     image.setImageBitmap(capturedImage);
                 }
             }
+        } else if (requestCode == SELECT_PHOTO) {
+            Uri imageUri = data.getData();
+            try {
+                capturedImage = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), imageUri);
+            } catch (IOException ex) {
+
+            }
+            image.setImageURI(imageUri);
         }
     }
 
