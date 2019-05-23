@@ -1,13 +1,12 @@
 package com.example.app_choferes.ui.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.example.app_choferes.R;
 import com.example.app_choferes.contracts.MainActivityContract;
@@ -93,6 +92,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         this.switcherFragment = new SwitcherFragment(getSupportFragmentManager());
         this.feedbackMessageDisplay = new FeedbackMessageDisplay(this);
 
+        String[] permissions = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+        };
+        int requestCode = 200;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            requestPermissions(permissions, requestCode);
+        }
+
         navigateToLogin();
     }
 
@@ -134,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     @Override
     protected void onDestroy() {
-        if (binder !=null)
+        if (binder != null)
             binder.unbind();
         super.onDestroy();
     }
