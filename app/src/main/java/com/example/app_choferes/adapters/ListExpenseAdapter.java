@@ -42,6 +42,7 @@ public class ListExpenseAdapter extends RecyclerView.Adapter<ListExpenseAdapter.
         holder.tvTypeExpense.setText(expense.getTypeExpenseDescription());
         Picasso.with(holder.expensePhoto.getContext())
                 .load(expense.getPhotoUrl())
+                .error(R.drawable.no_imagen)
                 .resize(80, 80)
                 .into(holder.expensePhoto);
     }

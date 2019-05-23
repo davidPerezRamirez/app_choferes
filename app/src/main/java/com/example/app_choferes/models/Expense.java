@@ -22,8 +22,7 @@ public class Expense {
     }
 
     public String getPhotoUrl() {
-        return /*photoUrl*/
-                "https://isuzu.com.ar/wp-content/uploads/2018/03/Serie-EV.jpg";
+        return photoUrl;
     }
 
     public String getExpenseDescription() {
