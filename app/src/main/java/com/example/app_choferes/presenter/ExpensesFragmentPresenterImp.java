@@ -170,7 +170,7 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
 
             //Convert bitmap to byte array
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            capturedImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            capturedImage.compress(Bitmap.CompressFormat.JPEG, 20, bos);
             byte[] bitmapdata = bos.toByteArray();
 
             //write the bytes in file
