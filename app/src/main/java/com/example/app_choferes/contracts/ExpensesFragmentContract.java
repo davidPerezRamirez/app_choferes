@@ -28,6 +28,8 @@ public interface ExpensesFragmentContract {
 
         void openGallery();
 
+        String getPathImage();
+
         void saveNewExpense(String description, int idTypeExpense, Double amount, Bitmap capturedImage);
 
         void loadExpenseTypes();

@@ -2,7 +2,10 @@ package com.example.app_choferes.presenter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.example.app_choferes.contracts.ExpensesFragmentContract;
 import com.example.app_choferes.models.ExpenseType;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +40,7 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
     private WeakReference<ExpensesFragmentContract.View> expensesView;
     private QueriesRestAPIService appService;
     private RetrofitService retrofitService;
+    private String mCurrentPhotoPath;
 
     public ExpensesFragmentPresenterImp(ExpensesFragmentContract.View expensesFragment) {
         this.expensesView = new WeakReference<>(expensesFragment);
@@ -48,9 +53,46 @@ public class ExpensesFragmentPresenterImp implements ExpensesFragmentContract.Pr
     }
 
     @Override
+    public String getPathImage() {
+        return mCurrentPhotoPath;
+    }
+
+    @Override
     public void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        getExpensesView().startActivityForResult(intent, TAKE_PHOTO);
+        if (intent.resolveActivity(getExpensesView().getMainActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Log.i("Foto nueva imagen", "IOException");
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                getExpensesView().startActivityForResult(intent, TAKE_PHOTO);
+            }
+        }
+
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  // prefix
+                ".jpg",         // suffix
+                storageDir      // directory
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
     }
 
     @Override

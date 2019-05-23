@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,18 +94,19 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == TAKE_PHOTO) {
-            if (data != null) {
-                if (data.hasExtra("data")) {
-                    capturedImage = data.getParcelableExtra("data");
-                    image.setImageBitmap(capturedImage);
-                }
+            try {
+                capturedImage = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(),
+                        Uri.parse(presenter.getPathImage()));
+            } catch (IOException ex) {
+                Log.e("ExpensesFragment", ex.getMessage());
             }
+            image.setImageBitmap(capturedImage);
         } else if (requestCode == SELECT_PHOTO) {
             Uri imageUri = data.getData();
             try {
                 capturedImage = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), imageUri);
             } catch (IOException ex) {
-
+                Log.e("ExpensesFragment", ex.getMessage());
             }
             image.setImageURI(imageUri);
         }
