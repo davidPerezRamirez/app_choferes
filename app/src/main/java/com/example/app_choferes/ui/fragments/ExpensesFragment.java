@@ -34,6 +34,7 @@ import static com.example.app_choferes.constants.AppConstants.TAKE_PHOTO;
 
 public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Presenter> implements OnBackPressedListener, ExpensesFragmentContract.View {
 
+    private static final int MAX_ATTEMPT = 3;
     private Bitmap capturedImage;
     private User currentUser;
 
@@ -93,22 +94,29 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Uri imageUri = null;
+        capturedImage = null;
+        int currentAttempt = 0;
+
         if (requestCode == TAKE_PHOTO) {
-            try {
-                capturedImage = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(),
-                        Uri.parse(presenter.getPathImage()));
-            } catch (IOException ex) {
-                Log.e("ExpensesFragment", ex.getMessage());
-            }
-            image.setImageBitmap(capturedImage);
+            imageUri = Uri.parse(presenter.getPathImage());
         } else if (requestCode == SELECT_PHOTO) {
-            Uri imageUri = data.getData();
-            try {
-                capturedImage = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), imageUri);
-            } catch (IOException ex) {
-                Log.e("ExpensesFragment", ex.getMessage());
+            imageUri = data.getData();
+        }
+        try {
+            while (capturedImage == null && currentAttempt < MAX_ATTEMPT) {
+                capturedImage = MediaStore.Images.Media.getBitmap(this.getMainActivity().getContentResolver(), imageUri);
+                currentAttempt++;
             }
-            image.setImageURI(imageUri);
+            if (capturedImage == null) {
+                showTemporalMsg("No fue posible cargar la imagen. Intente nuevamente");
+            } else {
+                image.setImageURI(imageUri);
+            }
+        } catch (IOException ex) {
+            Log.e("ExpensesFragment", ex.getMessage());
+        } catch (NullPointerException ex) {
+            Log.e("ExpensesFragment", ex.getMessage());
         }
     }
 
