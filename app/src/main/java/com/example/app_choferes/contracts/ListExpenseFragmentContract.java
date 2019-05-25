@@ -13,6 +13,8 @@ public interface ListExpenseFragmentContract {
         void initializeRecyclerListExpense(List<Expense> expenses);
 
         User getCurrentUser();
+
+        void updateRemainingImport(Double totalSpentAmount);
     }
 
     interface Presenter extends BasePresenter {

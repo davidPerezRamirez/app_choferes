@@ -43,7 +43,9 @@ public class ListExpenseFragmentPresenterImp implements ListExpenseFragmentContr
         users.enqueue(new Callback<List<Expense>>() {
             @Override
             public void onResponse(Call<List<Expense>> call, Response<List<Expense>> response) {
-                getListExpenseView().initializeRecyclerListExpense(response.body());
+                List<Expense> expenses = response.body();
+                getListExpenseView().updateRemainingImport(getTotalSpentAmount(expenses));
+                getListExpenseView().initializeRecyclerListExpense(expenses);
                 getListExpenseView().hideProgressBar();
             }
 
@@ -53,5 +55,15 @@ public class ListExpenseFragmentPresenterImp implements ListExpenseFragmentContr
                 getListExpenseView().showTemporalMsg("No pudieron cargarse los gastos de usuario " + currentUser.getName());
             }
         });
+    }
+
+    private double getTotalSpentAmount(List<Expense> expenses) {
+        double spentAmount = 0.0;
+
+        for (Expense expense : expenses) {
+            spentAmount += expense.getAmount();
+        }
+
+        return spentAmount;
     }
 }
