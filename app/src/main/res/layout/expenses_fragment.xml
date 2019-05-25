@@ -23,7 +23,7 @@
                 android:minWidth="120dp"
                 android:text="Descripcion: "
                 android:textColor="@color/teal_800"
-                android:textSize="15sp"
+                android:textSize="@dimen/big_small_font_size"
                 android:textStyle="bold" />
 
             <EditText
@@ -49,7 +49,7 @@
                 android:minWidth="120dp"
                 android:text="Tipo de gasto: "
                 android:textColor="@color/teal_800"
-                android:textSize="15sp"
+                android:textSize="@dimen/big_small_font_size"
                 android:textStyle="bold" />
 
             <Spinner
@@ -73,7 +73,7 @@
                 android:minWidth="120dp"
                 android:text="Importe: "
                 android:textColor="@color/teal_800"
-                android:textSize="15sp"
+                android:textSize="@dimen/big_small_font_size"
                 android:textStyle="bold" />
 
             <EditText

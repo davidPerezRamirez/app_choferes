@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvDescriptionItem"
         android:gravity="center|left"
-        android:textSize="15sp"
+        android:textSize="@dimen/big_small_font_size"
         android:textStyle="bold"/>
 
 </android.support.constraint.ConstraintLayout>
