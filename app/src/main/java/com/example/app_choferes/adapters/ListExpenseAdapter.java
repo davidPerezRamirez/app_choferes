@@ -37,7 +37,7 @@ public class ListExpenseAdapter extends RecyclerView.Adapter<ListExpenseAdapter.
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         Expense expense = expenses.get(position);
 
-        holder.tvAmount.setText(expense.getAmount().toString());
+        holder.tvAmount.setText("$" + expense.getAmount().toString());
         holder.tvExpenseDescription.setText(expense.getExpenseDescription());
         holder.tvTypeExpense.setText(expense.getTypeExpenseDescription());
         Picasso.with(holder.expensePhoto.getContext())
