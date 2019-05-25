@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +32,17 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
 
     private User currentUser;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tvRemainingAmount)
+    TextView tvRemainingAmount;
+    @BindView(R.id.tvSpentAmount)
+    TextView tvSpentAmount;
     @BindView(R.id.clListContainer)
     CoordinatorLayout clListContainer;
     @BindView(R.id.rvListExpenses)
     RecyclerView rvListExpenses;
+
     @OnClick(R.id.btn_add)
     public void onClickBtnAdd() {
         ExpensesFragment fragment = ExpensesFragment.newInstance(this.currentUser);
@@ -65,9 +73,14 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
         unbinder = ButterKnife.bind(this, clListContainer);
 
         faActivity.setOnBackPressedListener(this);
+        this.initializeActionBar();
         this.getPresenter().loadListExpensesFormCurrentUser();
 
         return clListContainer;
+    }
+
+    private void initializeActionBar() {
+        getMainActivity().setSupportActionBar(toolbar);
     }
 
     @Override
