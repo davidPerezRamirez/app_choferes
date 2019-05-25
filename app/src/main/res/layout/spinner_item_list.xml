@@ -2,14 +2,14 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDescriptionItem"
         android:gravity="center|left"
-        android:textSize="@dimen/big_small_font_size"
+        android:textSize="@dimen/small_font_size"
         android:textStyle="bold"/>
 
 </android.support.constraint.ConstraintLayout>
