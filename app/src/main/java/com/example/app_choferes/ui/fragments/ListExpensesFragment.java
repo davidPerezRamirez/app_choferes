@@ -98,7 +98,7 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
     @Override
     public void initializeRecyclerListExpense(List<Expense> expenses) {
         GridLayoutManager glm = new GridLayoutManager(this.getMainActivity(), 2);
-        ListExpenseAdapter listExpenseAdapter = new ListExpenseAdapter(expenses);
+        ListExpenseAdapter listExpenseAdapter = new ListExpenseAdapter(expenses, this.getMainActivity().getFragmentManager());
 
         rvListExpenses.setLayoutManager(glm);
         rvListExpenses.setAdapter(listExpenseAdapter);
