@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContract.Presenter>
-        implements ListExpenseFragmentContract.View, OnBackPressedListener {
+        implements ListExpenseFragmentContract.View, OnBackPressedListener, SwipeRefreshLayout.OnRefreshListener {
 
     private User currentUser;
 
@@ -41,6 +42,8 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
     CoordinatorLayout clListContainer;
     @BindView(R.id.rvListExpenses)
     RecyclerView rvListExpenses;
+    @BindView(R.id.srlContainer)
+    SwipeRefreshLayout srlContainer;
 
     @OnClick(R.id.btn_add)
     public void onClickBtnAdd() {
@@ -72,10 +75,20 @@ public class ListExpensesFragment extends BaseFragment<ListExpenseFragmentContra
         unbinder = ButterKnife.bind(this, clListContainer);
 
         faActivity.setOnBackPressedListener(this);
+        this.initializeSwipeRefreshLayout();
         this.initializeActionBar();
         this.getPresenter().loadListExpensesFormCurrentUser();
 
         return clListContainer;
+    }
+
+    private void initializeSwipeRefreshLayout() {
+        srlContainer.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onRefresh() {
+        reloadFragment(this);
     }
 
     private void initializeActionBar() {
