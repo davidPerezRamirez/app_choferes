@@ -98,25 +98,27 @@ public class ExpensesFragment extends BaseFragment<ExpensesFragmentContract.Pres
         capturedImage = null;
         int currentAttempt = 0;
 
-        if (requestCode == TAKE_PHOTO) {
-            imageUri = Uri.parse(presenter.getPathImage());
-        } else if (requestCode == SELECT_PHOTO) {
-            imageUri = data.getData();
-        }
-        try {
-            while (capturedImage == null && currentAttempt < MAX_ATTEMPT) {
-                capturedImage = MediaStore.Images.Media.getBitmap(this.getMainActivity().getContentResolver(), imageUri);
-                currentAttempt++;
+        if (data != null) {
+            if (requestCode == TAKE_PHOTO) {
+                imageUri = Uri.parse(presenter.getPathImage());
+            } else if (requestCode == SELECT_PHOTO) {
+                imageUri = data.getData();
             }
-            if (capturedImage == null) {
-                showTemporalMsg("No fue posible cargar la imagen. Intente nuevamente");
-            } else {
-                image.setImageURI(imageUri);
+            try {
+                while (capturedImage == null && currentAttempt < MAX_ATTEMPT) {
+                    capturedImage = MediaStore.Images.Media.getBitmap(this.getMainActivity().getContentResolver(), imageUri);
+                    currentAttempt++;
+                }
+                if (capturedImage == null) {
+                    showTemporalMsg("No fue posible cargar la imagen. Intente nuevamente");
+                } else {
+                    image.setImageURI(imageUri);
+                }
+            } catch (IOException ex) {
+                Log.e("ExpensesFragment", ex.getMessage());
+            } catch (NullPointerException ex) {
+                Log.e("ExpensesFragment", ex.getMessage());
             }
-        } catch (IOException ex) {
-            Log.e("ExpensesFragment", ex.getMessage());
-        } catch (NullPointerException ex) {
-            Log.e("ExpensesFragment", ex.getMessage());
         }
     }
 
