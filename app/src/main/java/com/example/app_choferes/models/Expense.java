@@ -4,8 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Expense {
 
-    @SerializedName("descriptipogasto")
+    @SerializedName("descripTipoGasto")
     private String typeExpenseDescription;
+    @SerializedName("idTipoGasto")
+    private int idTypeExpense;
     @SerializedName("descripcion")
     private String expenseDescription;
     @SerializedName("importe")
@@ -27,5 +29,9 @@ public class Expense {
 
     public String getExpenseDescription() {
         return expenseDescription;
+    }
+
+    public int getIdTypeExpense() {
+        return idTypeExpense;
     }
 }
