@@ -10,13 +10,17 @@ import android.widget.TextView;
 
 import com.example.app_choferes.R;
 import com.example.app_choferes.models.ExpenseType;
+import com.example.app_choferes.models.IconByTypeExpenseRepositoy;
 
 import java.util.List;
 
 public class ExpenseTypeListAdapter extends ArrayAdapter<ExpenseType> {
 
+    private IconByTypeExpenseRepositoy iconByTypeExpenseRepositoy;
+
     public ExpenseTypeListAdapter(Activity context, int resouceId, List<ExpenseType> list) {
         super(context, resouceId, list);
+        this.iconByTypeExpenseRepositoy = new IconByTypeExpenseRepositoy();
     }
 
     @Override
@@ -43,6 +47,7 @@ public class ExpenseTypeListAdapter extends ArrayAdapter<ExpenseType> {
             rowview = flater.inflate(R.layout.spinner_item_list, null, false);
 
             holder.txtTitle = rowview.findViewById(R.id.tvDescriptionItem);
+            holder.txtTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, this.iconByTypeExpenseRepositoy.getIcon(expenseType.getId()),0);
             rowview.setTag(holder);
         } else {
             holder = (viewHolder) rowview.getTag();
