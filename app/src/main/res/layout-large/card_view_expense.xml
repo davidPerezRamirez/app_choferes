@@ -40,22 +40,22 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvExpenseDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTypeExpense"
-                android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@+id/expense_photo"
-                android:text="Se cargo en YPF caseros"
-                android:textSize="15sp" />
-
-            <TextView
                 android:id="@+id/tvAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvExpenseDescription"
+                android:layout_below="@+id/tvTypeExpense"
                 android:layout_toRightOf="@+id/expense_photo"
                 android:text="$ 350.0" />
+
+            <TextView
+                android:id="@+id/tvExpenseDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAmount"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/expense_photo"
+                android:text="Se cargo en YPF caseros"
+                android:textSize="12sp" />
 
         </RelativeLayout>
 

@@ -23,44 +23,45 @@
                 android:id="@+id/expense_photo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_centerInParent="true"
                 android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
                 android:src="@drawable/no_imagen"
                 tools:style="@style/CardView" />
 
             <LinearLayout
+                android:id="@+id/llDescriptionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/llDescriptionContainer"
                 android:layout_below="@+id/expense_photo"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvTypeExpense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_gravity="left"
+                    android:layout_marginBottom="5dp"
                     android:text="Nafta"
                     android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tvExpenseDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Se cargo en YPF caseros"
-                    android:layout_gravity="left"
-                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tvAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$ 350.0"
                     android:layout_gravity="left"
-                    android:textSize="12sp"/>
+                    android:text="$ 350.0"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvExpenseDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="5dp"
+                    android:text="Se cargo en YPF caseros"
+                    android:textSize="10sp" />
+
             </LinearLayout>
 
         </RelativeLayout>
